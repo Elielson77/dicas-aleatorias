@@ -1,4 +1,3 @@
-const ID_RAPIDAPI = import.meta.env.ENV_ID_RAPIDAPI;
 const button = document.querySelector('#button')
 
 const obj = {
@@ -16,7 +15,7 @@ function traduzir(texto) {
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       'Accept-Encoding': 'application/gzip',
-      'X-RapidAPI-Key': ID_RAPIDAPI,
+      'X-RapidAPI-Key': '9dbdc28de3msh3cc643146f3d5f1p198e01jsnf08966e627ca',
       'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
     },
     body: encodedParams
