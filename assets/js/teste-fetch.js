@@ -1,4 +1,5 @@
-import { ID_RAPIDAPI } from "./util";
+const ID_RAPIDAPI = import.meta.env.ENV_ID_RAPIDAPI;
+const button = document.querySelector('#button')
 
 const obj = {
   method: 'GET',
@@ -7,19 +8,19 @@ const obj = {
 
 function traduzir(texto) {
   const encodedParams = new URLSearchParams();
-encodedParams.append("q", texto);
-encodedParams.append("target", "pt");
+  encodedParams.append("q", texto);
+  encodedParams.append("target", "pt");
 
-const options = {
-	method: 'POST',
-	headers: {
-		'content-type': 'application/x-www-form-urlencoded',
-		'Accept-Encoding': 'application/gzip',
-		'X-RapidAPI-Key': ID_RAPIDAPI,
-		'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
-	},
-	body: encodedParams
-};
+  const options = {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Accept-Encoding': 'application/gzip',
+      'X-RapidAPI-Key': ID_RAPIDAPI,
+      'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+    },
+    body: encodedParams
+  };
 
   fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
     .then(response => response.json())
@@ -27,7 +28,7 @@ const options = {
     .catch(err => console.log(err));
 }
 
-function request(){
+const request = () => {
   fetch(obj.url)
     .then(response => {
       return response.text()
@@ -45,3 +46,7 @@ function exibeResult(text) {
   const container = document.querySelector('.container-dica');
   container.innerHTML = text;
 }
+
+button.addEventListener('click', () => {
+  request()
+})
